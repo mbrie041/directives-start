@@ -30,11 +30,25 @@
             {{ evenNumber }}
           </li>
         </div>
+        <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li
+              class="list-group-item"
+              [ngClass]="{ evenNumber: evenNumber % 2 === 0 }"
+              [ngStyle]="{
+                backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'
+              }"
+              *ngFor="let evenNumber of evenNumbers"
+            >
+              {{ evenNumber }}
+            </li>
+          </div>
+        </ng-template>
       </ul>
       <p appBasicHighlight>Style me with basic directive</p>
       <p
         [appBetterHighlight]="'red'"
-        [defaultColour]="'yellow'"
+        defaultColour="yellow"
         [highlightColour]="'red'"
       >
         Style me with a better directive
